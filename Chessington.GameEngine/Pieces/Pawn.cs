@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace Chessington.GameEngine.Pieces
 {
-    public class Pawn : Piece
+    public class Pawn : TravelingPieces
     {
         public Pawn(Player thisPiecesPlayer) : base(thisPiecesPlayer) {}
         public bool HasMoved;
@@ -23,9 +23,7 @@ namespace Chessington.GameEngine.Pieces
             var currentPosition = board.FindPiece(this);
             var actualAvailableMoves = new List<Square>();
             var direction = GetDirection();
-
             var potentialAvailableMoves = AvailableSquares(currentPosition, direction, board).Take(2).ToList();
-
             if (IsFirstMoveValid(potentialAvailableMoves, board))
             {
                 actualAvailableMoves.Add(potentialAvailableMoves[0]);

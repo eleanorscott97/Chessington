@@ -38,10 +38,12 @@
     <Compile Include="Board.cs" />
     <Compile Include="GameSettings.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="Pieces\JumpingPieces.cs" />
     <Compile Include="Pieces\Piece.cs" />
     <Compile Include="Pieces\King.cs" />
     <Compile Include="Pieces\Knight.cs" />
     <Compile Include="Pieces\Pawn.cs" />
+    <Compile Include="Pieces\TravelingPieces.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pieces\Queen.cs" />

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Chessington.GameEngine.Pieces
 {
-    public class Rook : Piece
+    public class Rook : TravelingPieces
     {
         public Rook(Player thisPiecesPlayer)
             : base(thisPiecesPlayer) { }

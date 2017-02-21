@@ -5,42 +5,21 @@ using System.Runtime.InteropServices;
 
 namespace Chessington.GameEngine.Pieces
 {
-    public class Knight : Piece
+    public class Knight : JumpingPieces
     {
         public Knight(Player thisPiecesPlayer)
             : base(thisPiecesPlayer) { }
 
-        public override IEnumerable<Square> GetAvailableMoves(Board board)
+        protected override List<Direction> Moves { get; } = new List<Direction>
         {
-            var currentPosition = board.FindPiece(this);
-            var potentialAvailableMoves = new List<Square>
-            {
-                currentPosition + new Direction(-1, 2),
-                currentPosition + new Direction(-2, 1),
-                currentPosition + new Direction(-2, -1),
-                currentPosition + new Direction(-1, -2),
-                currentPosition + new Direction(1, -2),
-                currentPosition + new Direction(2, -1),
-                currentPosition + new Direction(2, 1),
-                currentPosition + new Direction(1, 2)
-            };
-
-            var actualAvailableMoves = ActualAvailableMoves(potentialAvailableMoves);
-
-            return actualAvailableMoves;
-        }
-
-        private IEnumerable<Square> ActualAvailableMoves(List<Square> potentialSquares)
-        {
-            var actualMoves = new List<Square>();
-            foreach (var square in potentialSquares)
-            {
-                if (IsOnBoard(square))
-                {
-                    actualMoves.Add(square);
-                }
-            }
-            return actualMoves;
-        }
+            new Direction(-1, 2),
+            new Direction(-2, 1),
+            new Direction(-2, -1),
+            new Direction(-1, -2),
+            new Direction(1, -2),
+            new Direction(2, -1),
+            new Direction(2, 1),
+            new Direction(1, 2)
+        };
     }
 }

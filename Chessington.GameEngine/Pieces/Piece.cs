@@ -20,29 +20,6 @@ namespace Chessington.GameEngine.Pieces
             var currentSquare = board.FindPiece(this);
             board.MovePiece(currentSquare, newSquare);
         }
-        protected IEnumerable<Square> AvailableSquares(Square currentPosition, Direction direction, Board board)
-        {
-            var maybeSquare = currentPosition + direction;
-            while (IsOnBoard(maybeSquare))
-            {
-                if (board.GetPiece(maybeSquare) == null)
-                {
-                    yield return maybeSquare;
-                    maybeSquare += direction;
-                }
-                else
-                {
-                    if (board.GetPiece(maybeSquare).ThisPiecesPlayer == Player.White)
-                    {
-                        yield break;
-                    }
-
-                    yield return maybeSquare;
-                    yield break;
-                }
-            }
-        }
-
         protected static bool IsOnBoard(Square targetSquare)
         {
             return (targetSquare.Row < GameSettings.BoardSize) && (targetSquare.Col < GameSettings.BoardSize) && (targetSquare.Row >= 0) && targetSquare.Col >= 0;
