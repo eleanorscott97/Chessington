@@ -45,6 +45,11 @@
             return !left.Equals(right);
         }
 
+        public static Square operator +(Square left, Direction right)
+        {
+            return Square.At(left.Row + right.x, left.Col + right.y);
+        }
+
         public override string ToString()
         {
             return string.Format("Row {0}, Col {1}", Row, Col);
