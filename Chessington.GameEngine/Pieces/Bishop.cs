@@ -20,20 +20,6 @@ namespace Chessington.GameEngine.Pieces
             return availableMoves;
         }
 
-        private static IEnumerable<Square> AvailableSquares(Square currentPosition, Direction direction)
-        {
-            var maybeSquare = Square.At(currentPosition.Row + direction.x, currentPosition.Col + direction.y);
-            while (IsOnBoard(maybeSquare))
-            {
-                yield return maybeSquare;
-                maybeSquare = Square.At(maybeSquare.Row + direction.x, maybeSquare.Col + direction.y);
-            }
 
-        }
-
-        private static bool IsOnBoard(Square targetSquare)
-        {
-            return (targetSquare.Row < GameSettings.BoardSize) && (targetSquare.Col < GameSettings.BoardSize) && (targetSquare.Row >= 0) && targetSquare.Col >= 0;
-        }
     }
 }

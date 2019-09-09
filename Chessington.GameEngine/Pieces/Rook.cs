@@ -12,11 +12,11 @@ namespace Chessington.GameEngine.Pieces
         {
             var currentPosition = board.FindPiece(this);
             var availableMoves = new List<Square>();
-            for (var i = 0; i <= GameSettings.BoardSize; i++)
+            for (var i = 0; i < GameSettings.BoardSize; i++)
             {
                 availableMoves.Add(Square.At(currentPosition.Row, i));
             }
-            for (var i = 0; i <= GameSettings.BoardSize; i++)
+            for (var i = 0; i < GameSettings.BoardSize; i++)
             {
                 availableMoves.Add(Square.At(i,currentPosition.Col));
             }
