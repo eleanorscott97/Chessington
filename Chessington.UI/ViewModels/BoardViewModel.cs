@@ -45,7 +45,7 @@ namespace Chessington.UI.ViewModels
         public void Handle(SquareSelected message)
         {
             var piece = Board.GetPiece(message.Square);
-            if (piece != null && piece.Player == Board.CurrentPlayer)
+            if (piece != null && piece.ThisPiecesPlayer == Board.CurrentPlayer)
             {
                 ChessingtonServices.EventAggregator.Publish(new PieceSelected(message.Square));
                 return;

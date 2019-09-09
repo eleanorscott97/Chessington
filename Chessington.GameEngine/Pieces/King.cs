@@ -5,8 +5,8 @@ namespace Chessington.GameEngine.Pieces
 {
     public class King : Piece
     {
-        public King(Player player)
-            : base(player) { }
+        public King(Player thisPiecesPlayer)
+            : base(thisPiecesPlayer) { }
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {

@@ -6,16 +6,16 @@ namespace Chessington.GameEngine.Pieces
 {
     public abstract class Piece
     {
-        protected Piece(Player player)
+        protected Piece(Player thisPiecesPlayer)
         {
-            Player = player;
+            ThisPiecesPlayer = thisPiecesPlayer;
         }
 
-        public Player Player { get; private set; }
+        public Player ThisPiecesPlayer { get; private set; }
 
         public abstract IEnumerable<Square> GetAvailableMoves(Board board);
 
-        public void MoveTo(Board board, Square newSquare)
+        public virtual void MoveTo(Board board, Square newSquare)
         {
             var currentSquare = board.FindPiece(this);
             board.MovePiece(currentSquare, newSquare);

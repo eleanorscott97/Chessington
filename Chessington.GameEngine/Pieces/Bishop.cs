@@ -5,8 +5,8 @@ namespace Chessington.GameEngine.Pieces
 {
     public class Bishop : Piece
     {
-        public Bishop(Player player)
-            : base(player) { }
+        public Bishop(Player thisPiecesPlayer)
+            : base(thisPiecesPlayer) { }
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
@@ -17,6 +17,7 @@ namespace Chessington.GameEngine.Pieces
             availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, -1)));
             availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, 1)));
             availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, -1)));
+            availableMoves.Remove(currentPosition);
             return availableMoves;
         }
 

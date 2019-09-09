@@ -22,7 +22,7 @@ namespace Chessington.UI.Factories
 
         public static BitmapImage GetImage(Piece piece)
         {
-            return new BitmapImage(new Uri(string.Format("{0}{1} {2}.ico", InterfaceSettings.IconRoot, piece.Player, PieceSuffixes[piece.GetType()])));
+            return new BitmapImage(new Uri(string.Format("{0}{1} {2}.ico", InterfaceSettings.IconRoot, piece.ThisPiecesPlayer, PieceSuffixes[piece.GetType()])));
         }
     }
 }

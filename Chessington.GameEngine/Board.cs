@@ -46,7 +46,7 @@ namespace Chessington.GameEngine
             var movingPiece = board[from.Row, from.Col];
             if (movingPiece == null) { return; }
 
-            if (movingPiece.Player != CurrentPlayer)
+            if (movingPiece.ThisPiecesPlayer != CurrentPlayer)
             {
                 throw new ArgumentException("The supplied piece does not belong to the current player.");
             }
@@ -61,7 +61,7 @@ namespace Chessington.GameEngine
             board[to.Row, to.Col] = board[from.Row, from.Col];
             board[from.Row, from.Col] = null;
 
-            CurrentPlayer = movingPiece.Player == Player.White ? Player.Black : Player.White;
+            CurrentPlayer = movingPiece.ThisPiecesPlayer == Player.White ? Player.Black : Player.White;
             OnCurrentPlayerChanged(CurrentPlayer);
         }
         

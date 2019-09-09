@@ -1,34 +1,35 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Chessington.GameEngine.Pieces
 {
     public class Pawn : Piece
     {
-        public Pawn(Player player) : base(player) {}
+        public Pawn(Player thisPiecesPlayer) : base(thisPiecesPlayer) {}
+        public bool HasMoved;
+
+        public override void MoveTo(Board board, Square newSquare)
+        {
+            base.MoveTo(board, newSquare);
+            HasMoved = true;
+        }
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         { 
             var currentPosition = board.FindPiece(this);
             var availableMoves = new List<Square>();
-            if (Player == Player.Black )
-            {
-                availableMoves.Add(Square.At(currentPosition.Row + 1, currentPosition.Col));
-                if (currentPosition.Row == 1)
-                {
-                    availableMoves.Add(Square.At(currentPosition.Row + 2, currentPosition.Col));
-                }
-            }
-            else
-            {
-                availableMoves.Add(Square.At(currentPosition.Row - 1, currentPosition.Col));
-                if (currentPosition.Row == 7)
-                {
-                    availableMoves.Add(Square.At(currentPosition.Row - 2, currentPosition.Col));
-                }
-            }
-            return availableMoves;
+            var direction = GetDirection();
+            availableMoves.AddRange(AvailableSquares(currentPosition, direction));
+            return availableMoves.Take(!HasMoved ? 2 : 1);
+        }
+
+        private Direction GetDirection()
+        {
+            var direction = ThisPiecesPlayer == Player.Black ? new Direction(1, 0) : new Direction(-1, 0);
+            return direction;
         }
     }
 }
