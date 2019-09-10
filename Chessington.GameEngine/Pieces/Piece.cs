@@ -22,7 +22,7 @@ namespace Chessington.GameEngine.Pieces
         }
         protected IEnumerable<Square> AvailableSquares(Square currentPosition, Direction direction, Board board)
         {
-            var maybeSquare = Square.At(currentPosition.Row + direction.rowDirection, currentPosition.Col + direction.colDirection);
+            var maybeSquare = currentPosition + direction;
             while (IsOnBoard(maybeSquare))
             {
                 if (board.GetPiece(maybeSquare) == null)
@@ -32,7 +32,8 @@ namespace Chessington.GameEngine.Pieces
                 }
                 else
                 {
-                    yield break ;
+                    yield return maybeSquare;
+                    yield break;
                 }
             }
         }
