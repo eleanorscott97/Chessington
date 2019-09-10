@@ -20,7 +20,6 @@ namespace Chessington.GameEngine.Pieces
             availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, 0)));
             availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(0, 1)));
             availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(0, -1)));
-            availableMoves.Remove(currentPosition);
             return availableMoves;
         }
     }
