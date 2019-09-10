@@ -12,14 +12,14 @@ namespace Chessington.GameEngine.Pieces
         {
             var currentPosition = board.FindPiece(this);
             var availableMoves = new List<Square>();
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, 1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, -1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, 1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, -1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, 0)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, 0)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(0, 1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(0, -1)));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, 1), board));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, -1), board));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, 1), board));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, -1), board));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, 0), board));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, 0), board));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(0, 1), board));
+            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(0, -1), board));
             return availableMoves;
         }
     }

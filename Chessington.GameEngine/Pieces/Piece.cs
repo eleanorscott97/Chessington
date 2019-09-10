@@ -20,13 +20,20 @@ namespace Chessington.GameEngine.Pieces
             var currentSquare = board.FindPiece(this);
             board.MovePiece(currentSquare, newSquare);
         }
-        protected IEnumerable<Square> AvailableSquares(Square currentPosition, Direction direction)
+        protected IEnumerable<Square> AvailableSquares(Square currentPosition, Direction direction, Board board)
         {
             var maybeSquare = Square.At(currentPosition.Row + direction.rowDirection, currentPosition.Col + direction.colDirection);
             while (IsOnBoard(maybeSquare))
             {
-                yield return maybeSquare;
-                maybeSquare = maybeSquare + direction;
+                if (board.GetPiece(maybeSquare) == null)
+                {
+                    yield return maybeSquare;
+                    maybeSquare += direction;
+                }
+                else
+                {
+                    yield break ;
+                }
             }
         }
 

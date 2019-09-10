@@ -24,7 +24,7 @@ namespace Chessington.GameEngine.Pieces
             var actualAvailableMoves = new List<Square>();
             var direction = GetDirection();
 
-            var potentialAvailableMoves = AvailableSquares(currentPosition, direction).Take(2).ToList();
+            var potentialAvailableMoves = AvailableSquares(currentPosition, direction, board).Take(2).ToList();
 
             if (IsFirstMoveValid(potentialAvailableMoves, board))
             {
