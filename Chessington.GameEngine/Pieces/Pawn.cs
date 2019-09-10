@@ -21,18 +21,18 @@ namespace Chessington.GameEngine.Pieces
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         { 
             var currentPosition = board.FindPiece(this);
-            var potentialAvailableMoves = new List<Square>();
             var actualAvailableMoves = new List<Square>();
             var direction = GetDirection();
-            var oneSquare = currentPosition + direction;
-            var twoSquare = oneSquare + direction;
 
-            potentialAvailableMoves.AddRange(AvailableSquares(currentPosition, direction));
-            if (board.GetPiece(oneSquare) != null) return actualAvailableMoves;
-            actualAvailableMoves.Add(potentialAvailableMoves[0]);
-            if (!HasMoved && board.GetPiece(twoSquare) == null)
+            var potentialAvailableMoves = AvailableSquares(currentPosition, direction).Take(2).ToList();
+
+            if (IsFirstMoveValid(potentialAvailableMoves, board))
             {
-                actualAvailableMoves.Add(potentialAvailableMoves[1]);
+                actualAvailableMoves.Add(potentialAvailableMoves[0]);
+                if (IsSecondMoveValid(potentialAvailableMoves, board))
+                {
+                    actualAvailableMoves.Add(potentialAvailableMoves[1]);
+                }
             }
             return actualAvailableMoves;
         }
@@ -41,6 +41,16 @@ namespace Chessington.GameEngine.Pieces
         {
             var direction = ThisPiecesPlayer == Player.Black ? new Direction(1, 0) : new Direction(-1, 0);
             return direction;
+        }
+
+        private bool IsFirstMoveValid(List<Square> potentialSquares, Board board)
+        {
+            return potentialSquares.Count > 0 && board.GetPiece(potentialSquares[0]) == null;
+        }
+
+        private bool IsSecondMoveValid(List<Square> potentialSquares, Board board)
+        {
+            return !HasMoved && potentialSquares.Count > 1 && board.GetPiece(potentialSquares[1]) == null;
         }
     }
 }
