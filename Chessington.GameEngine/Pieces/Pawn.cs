@@ -24,6 +24,10 @@ namespace Chessington.GameEngine.Pieces
             var actualAvailableMoves = new List<Square>();
             var direction = GetDirection();
             var potentialAvailableMoves = AvailableSquares(currentPosition, direction, board).Take(2).ToList();
+            //
+           // var potentialDiagonalMoves = AvailableSquares(currentPosition, new Direction(direction.rowDirection, direction.colDirection + 1), board).Take(1).ToList();
+            //potentialDiagonalMoves.AddRange(AvailableSquares(currentPosition, new Direction(direction.rowDirection, direction.colDirection - 1), board).Take(1).ToList());
+
             if (IsFirstMoveValid(potentialAvailableMoves, board))
             {
                 actualAvailableMoves.Add(potentialAvailableMoves[0]);
@@ -32,6 +36,16 @@ namespace Chessington.GameEngine.Pieces
                     actualAvailableMoves.Add(potentialAvailableMoves[1]);
                 }
             }
+           // if (IsALeftDiagonalMoveValid(potentialDiagonalMoves, board))
+           // {
+           //     actualAvailableMoves.Add(potentialDiagonalMoves[0]);
+           // }
+
+           // if (IsARightDiagonalMoveValid(potentialDiagonalMoves, board))
+           // {
+           //     actualAvailableMoves.Add((potentialDiagonalMoves[1]));
+           // }
+
             return actualAvailableMoves;
         }
 
@@ -50,5 +64,14 @@ namespace Chessington.GameEngine.Pieces
         {
             return !HasMoved && potentialSquares.Count > 1 && board.GetPiece(potentialSquares[1]) == null;
         }
+
+       // private bool IsALeftDiagonalMoveValid(List<Square> potentialSquares, Board board)
+        //{
+         //   return board.GetPiece(potentialSquares[0]) != null;
+        //}
+        //private bool IsARightDiagonalMoveValid(List<Square> potentialSquares, Board board)
+       // {
+         //   return board.GetPiece(potentialSquares[1]) != null;
+        //}
     }
 }
