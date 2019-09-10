@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Chessington.GameEngine.Pieces
 {
@@ -14,8 +15,13 @@ namespace Chessington.GameEngine.Pieces
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
             var currentPosition = board.FindPiece(this);
-
-            return Moves.Select(d => currentPosition + d).Where(IsOnBoard);
+            //var moves = Moves.Select(d => currentPosition + d).Where(IsOnBoard);
+            return Moves.Select(d => currentPosition + d).Where(IsOnBoard).Where(square => IsPlayable(square, board));
         }
+        protected bool IsPlayable(Square square, Board board)
+        {
+            return board.GetPiece(square) == null || board.GetPiece(square).ThisPiecesPlayer != ThisPiecesPlayer;
+        }
+
     }
 }
