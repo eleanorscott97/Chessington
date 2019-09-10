@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -20,10 +21,20 @@ namespace Chessington.GameEngine.Pieces
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         { 
             var currentPosition = board.FindPiece(this);
-            var availableMoves = new List<Square>();
+            var potentialAvailableMoves = new List<Square>();
+            var actualAvailableMoves = new List<Square>();
             var direction = GetDirection();
-            availableMoves.AddRange(AvailableSquares(currentPosition, direction));
-            return availableMoves.Take(!HasMoved ? 2 : 1);
+            var oneSquare = currentPosition + direction;
+            var twoSquare = oneSquare + direction;
+
+            potentialAvailableMoves.AddRange(AvailableSquares(currentPosition, direction));
+            if (board.GetPiece(oneSquare) != null) return actualAvailableMoves;
+            actualAvailableMoves.Add(potentialAvailableMoves[0]);
+            if (!HasMoved && board.GetPiece(twoSquare) == null)
+            {
+                actualAvailableMoves.Add(potentialAvailableMoves[1]);
+            }
+            return actualAvailableMoves;
         }
 
         private Direction GetDirection()
