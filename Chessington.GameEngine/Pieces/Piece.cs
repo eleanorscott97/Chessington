@@ -32,6 +32,11 @@ namespace Chessington.GameEngine.Pieces
                 }
                 else
                 {
+                    if (board.GetPiece(maybeSquare).ThisPiecesPlayer == Player.White)
+                    {
+                        yield break;
+                    }
+
                     yield return maybeSquare;
                     yield break;
                 }
