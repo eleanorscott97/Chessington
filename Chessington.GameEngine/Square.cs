@@ -47,7 +47,7 @@
 
         public static Square operator +(Square left, Direction right)
         {
-            return Square.At(left.Row + right.x, left.Col + right.y);
+            return Square.At(left.Row + right.rowDirection, left.Col + right.colDirection);
         }
 
         public override string ToString()

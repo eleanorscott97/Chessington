@@ -2,13 +2,13 @@
 {
     public class Direction
     {
-        public readonly int x;
-        public readonly int y;
+        public readonly int rowDirection;
+        public readonly int colDirection;
 
-        public Direction(int x, int y)
+        public Direction(int rowDirection, int colDirection)
         {
-            this.x = x;
-            this.y = y;
+            this.rowDirection = rowDirection;
+            this.colDirection = colDirection;
         }
     }
 }

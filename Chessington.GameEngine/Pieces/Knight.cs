@@ -15,17 +15,13 @@ namespace Chessington.GameEngine.Pieces
             var currentPosition = board.FindPiece(this);
             var availableMoves = new List<Square>();
             availableMoves.Add(currentPosition + new Direction(-1, 2));
-            availableMoves.AddRange(AvailableSquares(currentPosition, ));
-            var totalMoves = availableMoves.Take(1);
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-2, 1)));
-            totalMoves = 
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-2, -1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(-1, -2)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, -2)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(+2, -1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(2, 1)));
-            availableMoves.AddRange(AvailableSquares(currentPosition, new Direction(1, 2)));
-
+            availableMoves.Add(currentPosition + new Direction(-2, 1));
+            availableMoves.Add(currentPosition + new Direction(-2, -1));
+            availableMoves.Add(currentPosition + new Direction(-1, -2));
+            availableMoves.Add(currentPosition + new Direction(1, -2));
+            availableMoves.Add(currentPosition + new Direction(2, -1));
+            availableMoves.Add(currentPosition + new Direction(2, 1));
+            availableMoves.Add(currentPosition + new Direction(1, 2));
             return availableMoves;
         }
 
