@@ -13,7 +13,7 @@ namespace Chessington.GameEngine.Pieces
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
             var currentPosition = board.FindPiece(this);
-            var availableMoves = new List<Square>
+            var potentialAvailableMoves = new List<Square>
             {
                 currentPosition + new Direction(-1, 2),
                 currentPosition + new Direction(-2, 1),
@@ -24,8 +24,23 @@ namespace Chessington.GameEngine.Pieces
                 currentPosition + new Direction(2, 1),
                 currentPosition + new Direction(1, 2)
             };
-            return availableMoves;
+
+            var actualAvailableMoves = ActualAvailableMoves(potentialAvailableMoves);
+
+            return actualAvailableMoves;
         }
 
+        private IEnumerable<Square> ActualAvailableMoves(List<Square> potentialSquares)
+        {
+            var actualMoves = new List<Square>();
+            foreach (var square in potentialSquares)
+            {
+                if (IsOnBoard(square))
+                {
+                    actualMoves.Add(square);
+                }
+            }
+            return actualMoves;
+        }
     }
 }
